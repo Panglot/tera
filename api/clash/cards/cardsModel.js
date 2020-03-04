@@ -9,11 +9,13 @@ var CardSchema = new Schema({
   },
   gameId: {
     type: Number,
-    required: 'Every card should have ingame id'
+    required: 'Every card should have gameId'
   },
   maxLevel: {
-    type: Number,
-    enum: [8, 11, 13]
+    type: Number
+  },
+  iconUrls: {
+    type: Object
   },
   status: {
     type: String,
@@ -22,4 +24,4 @@ var CardSchema = new Schema({
   }
 });
 
-module.exports = mongoose.model('ClashCards', CardSchema);
+mongoose.model('ClashCards', CardSchema);
