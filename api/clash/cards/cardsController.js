@@ -1,5 +1,8 @@
 'use strict';
 
+// Load models
+require('./cardsModel');
+
 var mongoose = require('mongoose'),
   Card = mongoose.model('ClashCards');
 

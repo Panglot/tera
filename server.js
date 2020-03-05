@@ -2,8 +2,7 @@ var express = require('express'),
   app = express(),
   port = process.env.PORT || 8080,
   mongoose = require('mongoose'),
-  bodyParser = require('body-parser'),
-  Card = require('./api/clash/cards/cardsModel')
+  bodyParser = require('body-parser');
 
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
@@ -23,4 +22,3 @@ app.use(function(req, res) {
 });
 
 app.listen(port, () => console.log('~Server: Started on port: ' + port));
-
