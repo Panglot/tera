@@ -4,10 +4,20 @@
 require('./cardsModel');
 
 var mongoose = require('mongoose'),
-  Card = mongoose.model('ClashCards');
+  BasicCards = mongoose.model('ClashBasicCards'),
+  EnrichedCards = mongoose.model('ClashEnrichedCards'),
+  SpawnBuildingCards = mongoose.model('SpawnBuilding'),
+  DamageSpellCards = mongoose.model('DamageSpell');
 
-exports.listAllCards = function(req, res) {
-  Card.find({}, function(err, cards) {
+exports.listAllBasicCards = function(req, res) {
+  BasicCards.find({}, function(err, cards) {
+    if (err) res.send(err);
+    res.json(cards);
+  })
+};
+
+exports.listAllEnrichedCards = function(req, res) {
+  EnrichedCards.find({}, function(err, cards) {
     if (err) res.send(err);
     res.json(cards);
   })
@@ -18,7 +28,7 @@ exports.apiOfficialImport = function(req, res) {
   var cardsInDb,
     newCards = [];
 
-  Card.find({}, function(err, cards) {
+  BasicCards.find({}, function(err, cards) {
     if (err) res.send(err);
     cardsInDb = cards;
   })
@@ -31,7 +41,7 @@ exports.apiOfficialImport = function(req, res) {
         }
       });
 
-      Card.insertMany(newCards, function(err, cards) {
+      BasicCards.insertMany(newCards, function(err, cards) {
         if (err) res.send(err);
         res.json(cards);
       })
@@ -41,7 +51,8 @@ exports.apiOfficialImport = function(req, res) {
 
 
 exports.createACard = function(req, res) {
-  var new_card = new Card(req.body);
+  // var new_card = new SpawnBuildingCards(req.body);
+  var new_card = new DamageSpellCards(req.body);
   new_card.save({}, function(err, card) {
     if (err) res.send(err);
     res.json(card);
