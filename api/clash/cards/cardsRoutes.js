@@ -3,22 +3,21 @@
 module.exports = function(app, baseUrl) {
   var clashCardsControllers = require('./cardsController');
 
-  // cards routes
-  app.route(baseUrl + '/official-import') // Updates baseCards DB
-  .post(clashCardsControllers.apiOfficialImport)
+  app.route(baseUrl + '/official-import') // Updates BaseCards DB
+    .post(clashCardsControllers.apiOfficialImport)
   
-  app.route(baseUrl + '/card') // Post a card into the richCards DB
+  app.route(baseUrl + '/card') // Post a card into the EnrichedCards DB
     .post(clashCardsControllers.createACard)
 
-  app.route(baseUrl + '/card/:cardId') // From richCards DB
+  app.route(baseUrl + '/card/:cardId') // From EnrichedCards DB
     .get()
     .put()
-    .delete(); // Delete should have logic to return a card to baseCardsDB
+    .delete(); // Delete should have logic to return a card to BaseCardsDB
   
-    app.route(baseUrl + '/cards') // richCards DB
+  app.route(baseUrl + '/cards') // EnrichedCards DB
     .get(clashCardsControllers.listAllEnrichedCards)
 
-    app.route(baseUrl + '/cards/base') // baseCards
-      .get(clashCardsControllers.listAllBasicCards)
+  app.route(baseUrl + '/cards/base') // BaseCards
+    .get(clashCardsControllers.listAllBasicCards)
 
 }
