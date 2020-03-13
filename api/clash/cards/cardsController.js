@@ -23,7 +23,7 @@ exports.listAllEnrichedCards = function(req, res) {
   })
 };
 
-exports.apiOfficialImport = function(req, res) {
+exports.officialApiImport = function(req, res) {
   const cardsImport = req.body.items;
   var cardsInDb,
     newCards = [];
